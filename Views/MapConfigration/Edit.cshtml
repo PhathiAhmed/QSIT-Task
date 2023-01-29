@@ -1,0 +1,144 @@
+﻿@model QSIT.ViewModels.FormViewModel
+
+<form asp-action="Edit" asp-controller="MapConfigration">
+
+    <!--offset-xl-7-->
+    <div class="row mb-3" style="justify-content:space-between">
+        <h4>Map Settings </h4>
+        <div class="col-sm-5 columns felidcontainer  ">
+            <div class="column">
+                <i class="fa-regular fa-circle-dot"></i>
+                Cluster radius
+            </div>
+            <div class="column">
+                <input asp-for="Raduis" type="text" class=" felid" placeholder="Cluster with M" />
+            </div>
+            <span asp-validation-for="Raduis" class="text-danger text-center mb-2"></span>
+            
+            
+        </div>
+        <div class="col-sm-5 form-group toggle columns">
+            <div class="column">
+                <i class="fa-solid fa-right-left"></i>
+                Geo-Fencing
+            </div>
+            <div class="column">
+                <label class="switch offset-8">
+
+                    <input  type="checkbox" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="row mb-3" style="justify-content:space-between">
+        <h4>Duplication Event Configuration</h4>
+        <div class="col-sm-5 felidcontainer columns ">
+            <div class="column">
+                <i class="fa-regular fa-clock"></i>
+                Time Buffer
+            </div>
+            <div class="column">
+                <input asp-for="Time" type="text" class=" felid " placeholder="Time with Minutes" />
+            </div>
+            <span asp-validation-for="Time" class="text-danger text-center"></span>
+
+        </div>
+        <div class="col-sm-5 felidcontainer columns ">
+            <div class="column">
+                <i class="fa-solid fa-location-dot"></i>
+                Location Buffer
+            </div>
+            <div class="column">
+                <input asp-for="Location" type="text" class=" felid" placeholder="Loaction with KM" />
+            </div>
+            <span asp-validation-for="Location" class="text-danger"></span>
+
+        </div>
+
+    </div>
+
+    <div class="row mb-3">
+
+        <h4>End Event Duration</h4>
+        <div class="col-sm-5 felidcontainer columns ">
+            <div class="column">
+                <i class="fa-regular fa-clock"></i>
+                Duration
+            </div>
+            <div class="column">
+                <input asp-for="Duration" type="text" class=" felid" placeholder="Duration With Minutes" />
+            </div>
+            <span asp-validation-for="Duration" class="text-danger"></span>
+
+        </div>
+    </div>
+
+    <div class="col-sm-5 form-group mb-3">
+        <h4>Map Type</h4>
+        <select asp-for="MapTypeId" asp-items="@(new SelectList(@ViewBag.maptypes,"Id","Name"))" class="form-control browser-default custom-select">
+            <option  >@Model.MapName</option>
+        </select>
+        <span class="text-danger"></span>
+
+    </div>
+    <div class="col-sm-5 form-group mb-3">
+        <h4>Map Sub Type</h4>
+        <select asp-for="MapSupTypeId" asp-items="@(new SelectList(@ViewBag.mapsuptypes,"Id","Name"))" class="form-control browser-default custom-select">
+            <option >@Model.MapSubTypeName</option>
+        </select>
+        <span class="text-danger"></span>
+
+    </div>
+
+    <div class="col-sm-12 form-group ">
+        <button type="reset" class="btn btn-info mt-2 ">
+            <i class="fa-solid fa-power-off"></i>
+            Reset
+        </button>
+        <button class="btn btn-primary mt-2 offset-9 ">
+            <i class="fa-solid fa-check"></i>
+            Edit
+        </button>
+        <button asp-action="Index" class="btn btn-outline-danger mt-2  ">
+            <i class="fa-solid fa-xmark"></i>
+            Cancel
+        </button>
+    </div>
+
+
+
+</form>
+<partial name="_ValidationScriptsPartial"></partial>
+
+@section Scripts
+    {
+    <script>
+        $(document).ready(function () {
+            $('#MapTypeId').on('change', function () {
+                var maptypeId = $(this).val();
+                var mapsubtypelist = $('#MapSupTypeId');
+
+                mapsubtypelist.empty();
+                mapsubtypelist.append('<option></option>');
+
+                $.ajax({
+                    url: '/MapConfigration/GetMapSubType?maptypeId=' + maptypeId,
+                    success: function (mapsubtypes) {
+                        console.log(mapsubtypes);
+                        $.each(mapsubtypes, function (index, maptsubtype) {
+                            mapsubtypelist.append($('<option></option>').attr('value', maptsubtype.id).text(maptsubtype.name));
+                        });
+                    },
+                    error: function () {
+                        alert('Something Went Wrong !');
+                    }
+                });
+            });
+        });
+    </script>
+}
