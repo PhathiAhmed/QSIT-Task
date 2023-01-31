@@ -11,6 +11,7 @@ namespace QSIT.ViewModels
         [Range(minimum: 0.01, maximum: 99,ErrorMessage ="Zero Not Allow")]
         [RegularExpression(@"^[0.01-99]\d{0,1}(\.\d{1,3})?%?$", ErrorMessage = "Must Range from 0.01 to 99 ")]
         public double Raduis { get; set; }
+        public bool Geo_Fencing { get; set; }
         [Required]
         [RegularExpression(@"^[1-9]\d{0,2}(\.\d{1,3})?%?$",ErrorMessage = "Zero Not Allow , Accept Max 3 digits or 3 decimal")]
         public double Location { get; set; }

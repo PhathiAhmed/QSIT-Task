@@ -12,9 +12,9 @@
             <th class="text-center">
                 Cluster Reduis
             </th>
-            @*<th class="text-center">
+            <th class="text-center">
                 Geo-Fencing
-            </th>*@
+            </th>
             <th class="text-center">
                 Time
             </th>
@@ -40,11 +40,21 @@
         {
                 <tr>
                     <td class="text-center font-weight-bold align-middle table-active">
-                    @Html.DisplayFor(modelItem => item.Raduis)
+                    @*@Html.DisplayFor(modelItem => item.Raduis)*@
+                    @item.Raduis
                     </td>
-                    @*<td class="text-center align-middle table-primary">
-                    @Html.DisplayFor(modelItem => item.GeoFencing)
-                    </td>*@
+                    
+                    <td class="text-center align-middle table-primary">
+                        @if(item.Geo_Fencing==true)
+                        {
+                            @Html.Encode("Yes")
+                        }
+                        else
+                        {
+                            @Html.Encode("No")
+                        }
+                    </td>
+                
                 <td class="text-center align-middle table-active">
                     @Html.DisplayFor(modelItem => item.Time)
                     </td>

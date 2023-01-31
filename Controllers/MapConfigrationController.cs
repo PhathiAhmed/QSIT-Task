@@ -44,6 +44,7 @@ namespace QSIT.Controllers
                 var map = new Map()
                 {
                     Raduis = model.Raduis,
+                    Geo_Fencing=model.Geo_Fencing,
                     Time = model.Time,
                     Location = model.Location,
                     Duration = model.Duration,
@@ -69,6 +70,7 @@ namespace QSIT.Controllers
             {
                 Id = maps.Id,
                 Raduis = maps.Raduis,
+                Geo_Fencing=maps.Geo_Fencing,
                 Location = maps.Location,
                 Time = maps.Time,
                 Duration = maps.Duration,
@@ -88,6 +90,7 @@ namespace QSIT.Controllers
                 var map = imap.MapGetID(model.Id);
 
                 map.Raduis = model.Raduis;
+                map.Geo_Fencing = model.Geo_Fencing; ;
                 map.Location = model.Location;
                 map.Time = model.Time;
                 map.Duration = model.Duration;

@@ -9,7 +9,7 @@ namespace QSIT.Models
         
 
         public int Id { get; set; }
-        
+        public bool Geo_Fencing { get; set; }
         public double Raduis { get; set; }
         public double Location{ get; set; }
         public int Time { get; set; }

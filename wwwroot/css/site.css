@@ -14,9 +14,22 @@ html {
 body {
     margin-bottom: 60px;
     box-sizing: border-box;
-    background-image: url("https://media.istockphoto.com/id/476377297/photo/ukraine-topographic-map-isolated.jpg?b=1&s=612x612&w=0&k=20&c=Ui4SdKhOiyVqYXNENH0Bmi-iG59eMeoRvFK_zwDhoI8=");
-    background-repeat: initial;
+    /* The image used */
+    /*background-image: url("https://images.wallpaperscraft.com/image/single/arms_hands_map_paint_64684_300x168.jpg");*/
+    /* Add the blur effect */
+    /*filter: blur(8px);
+    -webkit-filter: blur(8px);
+     Full height */
+    height: 100%;
+    width: 100%;
+    /* Center and scale the image nicely */
+    /*background-position: center;*/
+    /*background-repeat: no-repeat;*/
+    background-size: cover;
+    image-rendering: pixelated;
 }
+
+
 .switch {
     position: relative;
     display: inline-block;
